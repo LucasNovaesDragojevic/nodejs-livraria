@@ -5,11 +5,15 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js --ignore *marko.js"
   },
   "author": "Lucas Novaes Dragojevic",
   "license": "GPL-3.0",
   "dependencies": {
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "marko": "4.22.7"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4"
   }
 }
