@@ -11,7 +11,8 @@
   "license": "GPL-3.0",
   "dependencies": {
     "express": "4.17.1",
-    "marko": "4.22.7"
+    "marko": "4.22.7",
+    "sqlite3": "5.0.0"
   },
   "devDependencies": {
     "nodemon": "2.0.4"
