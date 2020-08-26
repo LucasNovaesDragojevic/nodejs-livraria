@@ -3,9 +3,10 @@ require('marko/express')
 
 const express = require('express')
 const app = express()
-const routes = require('../app/routes/routes')
+const routes = require('../app/rotas/rotas')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const templates = require('../app/views/templates')
 
 /**
  * Usa middleware do express para disponibilizar arquivos estáticos
@@ -35,11 +36,11 @@ app.use(methodOverride(function (req, res) {
 routes(app)
 
 app.use(function (request, response, next) {
-  return response.status(404).marko(require('../app/views/base/erros/404.marko'))
+  return response.status(404).marko(templates.base.erro404)
 })
 
 app.use(function (erro, request, response, next) {
-  return response.status(500).marko(require('../app/views/base/erros/500.marko'))
+  return response.status(500).marko(templates.base.erro500)
 })
 
 module.exports = app
