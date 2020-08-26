@@ -24,7 +24,7 @@ function render(input, out, __component, component, state) {
     var $keyScope$0 = "[" + (($for$0++) + "]");
 
     out.w("<tr" +
-      marko_attr("id", "livro_" + (livro.id == null ? "" : livro.id)) +
+      marko_attr("id", "livro_" + livro.id) +
       "><td>" +
       marko_escapeXml(livro.id) +
       "</td><td>" +
@@ -32,10 +32,10 @@ function render(input, out, __component, component, state) {
       "</td><td>" +
       marko_escapeXml(livro.preco) +
       "</td><td><a" +
-      marko_attr("href", "/livros/form/" + (livro.id == null ? "" : livro.id)) +
+      marko_attr("href", "/livros/form/" + livro.id) +
       ">Editar</a></td><td><a href=#" +
-      marko_attr("data-ref", livro.id) +
-      " data-type=remocao>Remover</a></td></tr>");
+      marko_attr("data-ref", "" + livro.id) +
+      " data-type=remocao>Remover</a></td></tr> ");
   });
 
   out.w("</tbody></table></div></main><footer class=rodape><div class=container><div class=\"row align-items-center\"><div class=col-4><img src=/estatico/imagens/logo-rodape.svg class=logo-rodape></div><div class=col-8><ul class=redesSociais><li><a href=http://www.facebook.com/casadocodigo class=compartilhar-facebook target=_blank>/CasaDoCodigo</a></li><li><a href=http://www.twitter.com/casadocodigo class=compartilhar-twitter target=_blank>@casadocodigo</a></li></ul></div></div></div></footer><script src=/estatico/js/remove-livro.js>\r\n        </script>");

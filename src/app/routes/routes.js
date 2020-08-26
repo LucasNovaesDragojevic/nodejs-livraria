@@ -1,6 +1,7 @@
 const LivroDao = require('../infra/livro-dao')
 const db = require('../../config/database')
 const { request, response } = require('express')
+const { body, validationResult } = require('express-validator');
 
 module.exports = (app) => {
     app.get('/', function(request, response) {
@@ -41,9 +42,26 @@ module.exports = (app) => {
                 .catch(erro => console.log(erro))
     })
 
-    app.post('/livros', (request, response) => {
+    app.post('/livros',[
+        body('titulo').isLength({ min: 5 }).withMessage('O título deve possuir mais de 5 caracteres.'),
+        // password must be at least 5 chars long
+        body('preco').isCurrency().withMessage('O preço precisa ser um valor monetário válido.')
+      ], (request, response) => {
         console.log(request.body)
-        const livroDao = new LivroDao(db);
+
+        const livroDao = new LivroDao(db)
+        const erros = validationResult(request)
+
+        if (!erros.isEmpty()) {
+            return response.marko(
+                require('../views/livros/form/form.marko'), 
+                { 
+                    livro: {},
+                    errosValidacao: erros.array 
+                }
+            )
+        }
+
         livroDao.adiciona(request.body)
                 .then(response.redirect('/livros'))
                 .catch(erro => console.log(erro))

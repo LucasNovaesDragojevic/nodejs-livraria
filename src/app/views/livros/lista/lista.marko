@@ -35,13 +35,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr id="livro_${livro.id}" for (livro in data.livros)>
-                            <td>${livro.id}</td>
-                            <td>${livro.titulo}</td>
-                            <td>${livro.preco}</td>
-                            <td><a href="/livros/form/${livro.id}">Editar</a></td>
-                            <td><a href="#" data-ref="${livro.id}" data-type="remocao">Remover</a></td>
-                        </tr>
+                        <for|livro| of=data.livros>
+                            <tr id=`livro_${livro.id}`>
+                                <td>${livro.id}</td>
+                                <td>${livro.titulo}</td>
+                                <td>${livro.preco}</td>
+                                <td><a href=`/livros/form/${livro.id}`>Editar</a></td>
+                                <td><a href="#" data-ref=`${livro.id}` data-type="remocao">Remover</a></td>
+                            </tr> 
+                        </for>
                     </tbody>
                 </table>
             </div>
