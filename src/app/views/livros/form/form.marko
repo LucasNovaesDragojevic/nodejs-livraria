@@ -25,7 +25,7 @@
                 <h1>Cadastro de livros</h1>
                 
                 <if(data.errosValidacao)>
-                    <for|erro| of=data.errosValidacao>
+                    <for|erro| in=data.errosValidacao>
                         <div class="alert alert-danger">
                             ${erro.param} - ${erro.msg}
                         </div>
