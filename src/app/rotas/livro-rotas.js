@@ -1,11 +1,22 @@
 const LivroControlador = require('../controladores/livro-controlador')
+const BaseControlador = require('../controladores/base-controlador')
 const Livro = require('../modelos/livro')
+const { request, response } = require('express')
 
 module.exports = (app) => {
     
     const livroControlador = new LivroControlador
     
     const rotasLivro = LivroControlador.rotas()
+
+    app.use(rotasLivro.autenticadas, (request, response, next) => {
+        if (request.isAuthenticated()) {
+            next()
+        }
+        else {
+            response.redirect(BaseControlador.rotas().login)
+        }
+    })
     
     app.get(rotasLivro.lista, livroControlador.lista())
 

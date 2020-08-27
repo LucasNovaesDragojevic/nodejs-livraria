@@ -33,6 +33,9 @@ app.use(methodOverride(function (req, res) {
     }
 }))
 
+const sessaoAutenticacao = require('./sessao-autenticacao')
+sessaoAutenticacao(app)
+
 routes(app)
 
 app.use(function (request, response, next) {
