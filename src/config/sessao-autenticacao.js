@@ -1,4 +1,4 @@
-const uuid = require('uuid')
+const { v4: uuidv4 } = require('uuid');
 const sessao = require('express-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
@@ -48,7 +48,7 @@ module.exports = (app) => {
     app.use(sessao({
         secret: 'node alura',
         genid: (request) => {
-            return uuid()
+            return uuidv4()
         },
         resave: false,
         saveUninitialized: false

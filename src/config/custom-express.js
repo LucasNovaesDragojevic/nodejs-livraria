@@ -3,7 +3,6 @@ require('marko/express')
 
 const express = require('express')
 const app = express()
-const routes = require('../app/rotas/rotas')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const templates = require('../app/views/templates')
@@ -36,7 +35,8 @@ app.use(methodOverride(function (req, res) {
 const sessaoAutenticacao = require('./sessao-autenticacao')
 sessaoAutenticacao(app)
 
-routes(app)
+const rotas = require('../app/rotas/rotas')
+rotas(app)
 
 app.use(function (request, response, next) {
   return response.status(404).marko(templates.base.erro404)
